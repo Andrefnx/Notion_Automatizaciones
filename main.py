@@ -17,6 +17,13 @@ CUOTAS_TEMPLATE_ID = "2e672fe52daf80298eded184594af680"
 if not NOTION_TOKEN or not DB_MOVIMIENTOS_ID or not DB_PRESUPUESTO_ID:
     raise ValueError("Missing required environment variables: NOTION_TOKEN, DB_MOVIMIENTOS_ID, DB_PRESUPUESTO_ID")
 
+# Debug: Show token info (without exposing full token)
+import sys
+token_preview = NOTION_TOKEN[:10] + "..." + NOTION_TOKEN[-5:] if NOTION_TOKEN else "NONE"
+print(f"[DEBUG] Using token: {token_preview}", file=sys.stderr)
+print(f"[DEBUG] DB_MOVIMIENTOS_ID: {DB_MOVIMIENTOS_ID}", file=sys.stderr)
+print(f"[DEBUG] DB_PRESUPUESTO_ID: {DB_PRESUPUESTO_ID}", file=sys.stderr)
+
 headers = {
     "Authorization": "Bearer " + NOTION_TOKEN,
     "Content-Type": "application/json",
