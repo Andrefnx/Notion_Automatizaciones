@@ -5,11 +5,11 @@ import json
 import os
 
 
-NOTION_TOKEN = os.getenv("NOTION_TOKEN")
+NOTION_TOKEN = os.getenv("NOTION_TOKEN", "").strip()
 
-DB_MOVIMIENTOS_ID = os.getenv("DB_MOVIMIENTOS_ID")
+DB_MOVIMIENTOS_ID = os.getenv("DB_MOVIMIENTOS_ID", "").strip()
 
-DB_PRESUPUESTO_ID = os.getenv("DB_PRESUPUESTO_ID")
+DB_PRESUPUESTO_ID = os.getenv("DB_PRESUPUESTO_ID", "").strip()
 
 # Template page ID for "Cuotas"
 CUOTAS_TEMPLATE_ID = "2e672fe52daf80298eded184594af680"
@@ -21,6 +21,7 @@ if not NOTION_TOKEN or not DB_MOVIMIENTOS_ID or not DB_PRESUPUESTO_ID:
 import sys
 token_preview = NOTION_TOKEN[:10] + "..." + NOTION_TOKEN[-5:] if NOTION_TOKEN else "NONE"
 print(f"[DEBUG] Using token: {token_preview}", file=sys.stderr)
+print(f"[DEBUG] Token length: {len(NOTION_TOKEN)}", file=sys.stderr)
 print(f"[DEBUG] DB_MOVIMIENTOS_ID: {DB_MOVIMIENTOS_ID}", file=sys.stderr)
 print(f"[DEBUG] DB_PRESUPUESTO_ID: {DB_PRESUPUESTO_ID}", file=sys.stderr)
 
