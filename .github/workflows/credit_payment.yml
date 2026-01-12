@@ -23,4 +23,5 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           DB_CUENTAS_ID: ${{ secrets.DB_CUENTAS_ID }}
           DB_PRESUPUESTO_ID: ${{ secrets.DB_PRESUPUESTO_ID }}
+          PAGO_TEMPLATE_ID: ${{ secrets.PAGO_TEMPLATE_ID }}
         run: python credit_payment.py
