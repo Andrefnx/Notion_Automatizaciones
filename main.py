@@ -7,9 +7,9 @@ import os
 
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "").strip()
 
-DB_MOVIMIENTOS_ID = os.getenv("DB_MOVIMIENTOS_ID", "").strip()
+DB_MOVIMIENTOS_ID = os.getenv("DB_MOVIMIENTOS_ID", "").strip().replace("-", "")
 
-DB_PRESUPUESTO_ID = os.getenv("DB_PRESUPUESTO_ID", "").strip()
+DB_PRESUPUESTO_ID = os.getenv("DB_PRESUPUESTO_ID", "").strip().replace("-", "")
 
 # Template page ID for "Cuotas"
 CUOTAS_TEMPLATE_ID = "2e672fe52daf80298eded184594af680"
