@@ -22,4 +22,8 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           DB_MOVIMIENTOS_ID: ${{ secrets.DB_MOVIMIENTOS_ID }}
           DB_PRESUPUESTO_ID: ${{ secrets.DB_PRESUPUESTO_ID }}
+<<<<<<< HEAD
         run: python main.py
+=======
+        run: main.py
+>>>>>>> 91deda44044d272b25e6ff94c608e337581775bf
