@@ -20,10 +20,12 @@ if not NOTION_TOKEN or not DB_MOVIMIENTOS_ID or not DB_PRESUPUESTO_ID:
 # Debug: Show token info (without exposing full token)
 import sys
 token_preview = NOTION_TOKEN[:10] + "..." + NOTION_TOKEN[-5:] if NOTION_TOKEN else "NONE"
+db_mov_display = DB_MOVIMIENTOS_ID[:8] + "..." + DB_MOVIMIENTOS_ID[-4:] if DB_MOVIMIENTOS_ID else "NONE"
+db_pre_display = DB_PRESUPUESTO_ID[:8] + "..." + DB_PRESUPUESTO_ID[-4:] if DB_PRESUPUESTO_ID else "NONE"
 print(f"[DEBUG] Using token: {token_preview}", file=sys.stderr)
 print(f"[DEBUG] Token length: {len(NOTION_TOKEN)}", file=sys.stderr)
-print(f"[DEBUG] DB_MOVIMIENTOS_ID: {DB_MOVIMIENTOS_ID}", file=sys.stderr)
-print(f"[DEBUG] DB_PRESUPUESTO_ID: {DB_PRESUPUESTO_ID}", file=sys.stderr)
+print(f"[DEBUG] DB_MOVIMIENTOS_ID: {db_mov_display} (length: {len(DB_MOVIMIENTOS_ID)})", file=sys.stderr)
+print(f"[DEBUG] DB_PRESUPUESTO_ID: {db_pre_display} (length: {len(DB_PRESUPUESTO_ID)})", file=sys.stderr)
 
 headers = {
     "Authorization": "Bearer " + NOTION_TOKEN,
