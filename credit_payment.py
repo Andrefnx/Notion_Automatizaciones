@@ -131,6 +131,7 @@ def create_payment_page(nombre_texto, monto, fecha, cuentas_page_id):
 
 def get_pages():
     """Query all accounts from Cuentas database"""
+    # Try direct query first
     url = f"https://api.notion.com/v1/databases/{DB_CUENTAS_ID}/query"
     
     print(f"[DEBUG] Querying URL: {url}")
@@ -141,6 +142,40 @@ def get_pages():
     print(f"[DEBUG] Response status: {response.status_code}")
     
     data = response.json()
+    
+    # If we get invalid request URL, the database might not be accessible
+    if response.status_code == 400 and "invalid_request_url" in str(data):
+        print("[WARN] Direct database query failed. Database may have multiple data sources or access issue.")
+        print("[WARN] Trying alternative approach...")
+        
+        # Alternative: search for Cuentas in all available databases
+        url = "https://api.notion.com/v1/search"
+        payload = {
+            "query": "Cuentas",
+            "filter": {"value": "database", "property": "object"}
+        }
+        response = requests.post(url, json=payload, headers=headers)
+        data = response.json()
+        
+        if response.status_code == 200 and "results" in data:
+            for result in data["results"]:
+                if result.get("object") == "database" and "title" in result:
+                    # Found Cuentas database, use its ID
+                    found_id = result["id"]
+                    print(f"[INFO] Found Cuentas database: {found_id}")
+                    
+                    # Now query this database
+                    url = f"https://api.notion.com/v1/databases/{found_id}/query"
+                    payload = {"page_size": 100}
+                    response = requests.post(url, json=payload, headers=headers)
+                    data = response.json()
+                    
+                    if response.status_code == 200:
+                        print(f"[DEBUG] Found {len(data.get('results', []))} accounts")
+                        return data.get("results", [])
+        
+        print("[ERROR] Could not find or query Cuentas database")
+        return []
     
     if "object" in data and data["object"] == "error":
         print(f"Notion API Error: {data.get('message', 'Unknown error')}")
