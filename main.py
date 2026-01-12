@@ -3,13 +3,17 @@ from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 import json
 import os
+import re
 
 
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "").strip()
 
-DB_MOVIMIENTOS_ID = os.getenv("DB_MOVIMIENTOS_ID", "").strip().replace("-", "")
+# Extract only hexadecimal characters from database IDs (remove hyphens and other characters)
+_mov_id_raw = os.getenv("DB_MOVIMIENTOS_ID", "").strip()
+DB_MOVIMIENTOS_ID = re.sub(r'[^a-f0-9]', '', _mov_id_raw.lower())
 
-DB_PRESUPUESTO_ID = os.getenv("DB_PRESUPUESTO_ID", "").strip().replace("-", "")
+_pre_id_raw = os.getenv("DB_PRESUPUESTO_ID", "").strip()
+DB_PRESUPUESTO_ID = re.sub(r'[^a-f0-9]', '', _pre_id_raw.lower())
 
 # Template page ID for "Cuotas"
 CUOTAS_TEMPLATE_ID = "2e672fe52daf80298eded184594af680"
