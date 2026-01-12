@@ -1,4 +1,4 @@
-name: Notion cuotas
+name: Cuotas Generator
 on:
   schedule:
     - cron: "*/5 * * * *"
@@ -23,4 +23,4 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           DB_MOVIMIENTOS_ID: ${{ secrets.DB_MOVIMIENTOS_ID }}
           DB_PRESUPUESTO_ID: ${{ secrets.DB_PRESUPUESTO_ID }}
-        run: python main.py
+        run: python cuotas_generator.py
