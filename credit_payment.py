@@ -133,20 +133,27 @@ def get_pages():
     """Query all accounts from Cuentas database"""
     url = f"https://api.notion.com/v1/databases/{DB_CUENTAS_ID}/query"
     
+    print(f"[DEBUG] Querying URL: {url}")
+    
     payload = {"page_size": 100}
     response = requests.post(url, json=payload, headers=headers)
+    
+    print(f"[DEBUG] Response status: {response.status_code}")
     
     data = response.json()
     
     if "object" in data and data["object"] == "error":
         print(f"Notion API Error: {data.get('message', 'Unknown error')}")
+        print(f"Full error response: {data}")
         return []
     
     if "results" not in data:
         print(f"Unexpected response format. Keys: {data.keys()}")
+        print(f"Full response: {data}")
         return []
         
     results = data["results"]
+    print(f"[DEBUG] Found {len(results)} accounts")
     return results
 
 
