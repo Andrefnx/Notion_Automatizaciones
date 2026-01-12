@@ -1,0 +1,22 @@
+{
+    "Cargo": {
+        "id": "%60Gsk",
+        "type": "relation",
+        "relation": [
+            {
+                "id": "2e572fe5-2daf-8151-a8c7-dbc3ce34d9da"
+            }
+        ],
+        "has_more": false
+    },
+    "Sub-Categorias": {
+        "id": "ZKIu",
+        "type": "relation",
+        "relation": [
+            {
+                "id": "2e472fe5-2daf-801c-b0fe-fff2d5461426"
+            }
+        ],
+        "has_more": false
+    }
+}

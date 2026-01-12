@@ -1,0 +1,25 @@
+name: Notion cuotas
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DB_MOVIMIENTOS_ID: ${{ secrets.DB_MOVIMIENTOS_ID }}
+          DB_PRESUPUESTO_ID: ${{ secrets.DB_PRESUPUESTO_ID }}
+        run: python main.py
