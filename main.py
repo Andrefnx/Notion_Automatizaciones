@@ -5,14 +5,17 @@ import json
 import os
 
 
-NOTION_TOKEN = os.getenv("NOTION_TOKEN", "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")
+NOTION_TOKEN = os.getenv("NOTION_TOKEN")
 
-DB_MOVIMIENTOS_ID = os.getenv("DB_MOVIMIENTOS_ID", "2e572fe52daf80ada049fac2ea4e0289")
+DB_MOVIMIENTOS_ID = os.getenv("DB_MOVIMIENTOS_ID")
 
-DB_PRESUPUESTO_ID = os.getenv("DB_PRESUPUESTO_ID", "2e572fe52daf80858276f9c05a888791")
+DB_PRESUPUESTO_ID = os.getenv("DB_PRESUPUESTO_ID")
 
 # Template page ID for "Cuotas"
 CUOTAS_TEMPLATE_ID = "2e672fe52daf80298eded184594af680"
+
+if not NOTION_TOKEN or not DB_MOVIMIENTOS_ID or not DB_PRESUPUESTO_ID:
+    raise ValueError("Missing required environment variables: NOTION_TOKEN, DB_MOVIMIENTOS_ID, DB_PRESUPUESTO_ID")
 
 headers = {
     "Authorization": "Bearer " + NOTION_TOKEN,
