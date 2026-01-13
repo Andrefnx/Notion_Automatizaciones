@@ -309,25 +309,35 @@ for page in pages:
     nombre = props.get("Nombre", {}).get("title", [{}])
     nombre = nombre[0]["text"]["content"] if nombre and "text" in nombre[0] else ""
 
-    monto = props.get("Monto", {}).get("number", "")
+    monto_data = props.get("Monto") or {}
+    monto = monto_data.get("number", "") if isinstance(monto_data, dict) else ""
 
-    tipo = props.get("Tipo", {}).get("select", {}).get("name", "")
+    tipo_data = props.get("Tipo") or {}
+    tipo_select = tipo_data.get("select") or {}
+    tipo = tipo_select.get("name", "") if isinstance(tipo_select, dict) else ""
 
-    fecha_str = props.get("Fecha", {}).get("date", {}).get("start", "")
+    fecha_data = props.get("Fecha") or {}
+    fecha_info = fecha_data.get("date") or {}
+    fecha_str = fecha_info.get("start", "") if isinstance(fecha_info, dict) else ""
     fecha = datetime.fromisoformat(fecha_str) if fecha_str else None
 
-    cargo = props.get("Cargo", {}).get("relation", [])
+    cargo_data = props.get("Cargo") or {}
+    cargo = cargo_data.get("relation", []) if isinstance(cargo_data, dict) else []
     cargo_id = cargo[0]["id"] if cargo else None
 
-    sub_categorias = props.get("Sub-Categorias", {}).get("relation", [])
+    sub_categorias_data = props.get("Sub-Categorias") or {}
+    sub_categorias = sub_categorias_data.get("relation", []) if isinstance(sub_categorias_data, dict) else []
     sub_categorias_id = sub_categorias[0]["id"] if sub_categorias else None
 
-    descripcion = props.get("Descripción", {}).get("rich_text", [{}])
+    descripcion_data = props.get("Descripción") or {}
+    descripcion = descripcion_data.get("rich_text", [{}]) if isinstance(descripcion_data, dict) else [{}]
     descripcion = descripcion[0]["text"]["content"] if descripcion and "text" in descripcion[0] else ""
 
-    cuotas = props.get("Cuotas?", {}).get("checkbox", False)
+    cuotas_data = props.get("Cuotas?") or {}
+    cuotas = cuotas_data.get("checkbox", False) if isinstance(cuotas_data, dict) else False
 
-    cantidad_cuotas = props.get("Cantidad cuotas", {}).get("number", "")
+    cantidad_cuotas_data = props.get("Cantidad cuotas") or {}
+    cantidad_cuotas = cantidad_cuotas_data.get("number", "") if isinstance(cantidad_cuotas_data, dict) else ""
 
     cuotas_generadas = props.get("Cuotas generadas", {}).get("checkbox", False)
 
