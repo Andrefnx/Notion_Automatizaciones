@@ -15,8 +15,8 @@ DB_CUENTAS_ID = re.sub(r'[^a-f0-9]', '', _cuentas_id_raw.lower())
 _pre_id_raw = os.getenv("DB_PRESUPUESTO_ID", "").strip()
 DB_PRESUPUESTO_ID = re.sub(r'[^a-f0-9]', '', _pre_id_raw.lower())
 
-_template_id_raw = os.getenv("PAGO_TEMPLATE_ID", "").strip()
-PAGO_TEMPLATE_ID = re.sub(r'[^a-f0-9]', '', _template_id_raw.lower())
+_template_id_raw = os.getenv("CUOTAS_TEMPLATE_ID", "").strip()
+CUOTAS_TEMPLATE_ID = re.sub(r'[^a-f0-9]', '', _template_id_raw.lower())
 
 _pago_deudas_raw = os.getenv("PAGO_DEUDAS_ID", "").strip()
 PAGO_DEUDAS_ID = re.sub(r'[^a-f0-9]', '', _pago_deudas_raw.lower())
@@ -33,8 +33,8 @@ print(f"[DEBUG] Using token: {token_preview}", file=sys.stderr)
 print(f"[DEBUG] Token length: {len(NOTION_TOKEN)}", file=sys.stderr)
 print(f"[DEBUG] DB_CUENTAS_ID: {db_cuentas_display} (length: {len(DB_CUENTAS_ID)})", file=sys.stderr)
 print(f"[DEBUG] DB_PRESUPUESTO_ID: {db_pre_display} (length: {len(DB_PRESUPUESTO_ID)})", file=sys.stderr)
-if PAGO_TEMPLATE_ID:
-    print(f"[DEBUG] PAGO_TEMPLATE_ID: {PAGO_TEMPLATE_ID[:8]}...{PAGO_TEMPLATE_ID[-4:]}", file=sys.stderr)
+if CUOTAS_TEMPLATE_ID:
+    print(f"[DEBUG] CUOTAS_TEMPLATE_ID: {CUOTAS_TEMPLATE_ID[:8]}...{CUOTAS_TEMPLATE_ID[-4:]}", file=sys.stderr)
 if PAGO_DEUDAS_ID:
     print(f"[DEBUG] PAGO_DEUDAS_ID: {PAGO_DEUDAS_ID[:8]}...{PAGO_DEUDAS_ID[-4:]}", file=sys.stderr)
 
@@ -137,8 +137,8 @@ def create_payment_page(cuentas_page_id, fecha):
     try:
         # First, duplicate the template page
         new_page_id = None
-        if PAGO_TEMPLATE_ID:
-            new_page_id = duplicate_template_page(PAGO_TEMPLATE_ID, DB_PRESUPUESTO_ID)
+        if CUOTAS_TEMPLATE_ID:
+            new_page_id = duplicate_template_page(CUOTAS_TEMPLATE_ID, DB_PRESUPUESTO_ID)
             if not new_page_id:
                 print(f"    Warning: Could not duplicate template, creating page from scratch")
         
