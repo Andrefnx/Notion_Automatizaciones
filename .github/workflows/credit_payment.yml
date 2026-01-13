@@ -1,7 +1,7 @@
 name: Credit Payment Generator
 on:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 3 1 * *"
   workflow_dispatch:
 
 jobs:
@@ -24,4 +24,5 @@ jobs:
           DB_CUENTAS_ID: ${{ secrets.DB_CUENTAS_ID }}
           DB_PRESUPUESTO_ID: ${{ secrets.DB_PRESUPUESTO_ID }}
           PAGO_TEMPLATE_ID: ${{ secrets.PAGO_TEMPLATE_ID }}
+          PAGO_DEUDAS_ID: ${{ secrets.PAGO_DEUDAS_ID }}
         run: python credit_payment.py

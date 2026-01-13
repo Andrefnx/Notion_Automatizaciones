@@ -18,6 +18,9 @@ DB_PRESUPUESTO_ID = re.sub(r'[^a-f0-9]', '', _pre_id_raw.lower())
 _template_id_raw = os.getenv("PAGO_TEMPLATE_ID", "").strip()
 PAGO_TEMPLATE_ID = re.sub(r'[^a-f0-9]', '', _template_id_raw.lower())
 
+_pago_deudas_raw = os.getenv("PAGO_DEUDAS_ID", "").strip()
+PAGO_DEUDAS_ID = re.sub(r'[^a-f0-9]', '', _pago_deudas_raw.lower())
+
 if not NOTION_TOKEN or not DB_CUENTAS_ID or not DB_PRESUPUESTO_ID:
     raise ValueError("Missing required environment variables: NOTION_TOKEN, DB_CUENTAS_ID, DB_PRESUPUESTO_ID")
 
@@ -32,6 +35,8 @@ print(f"[DEBUG] DB_CUENTAS_ID: {db_cuentas_display} (length: {len(DB_CUENTAS_ID)
 print(f"[DEBUG] DB_PRESUPUESTO_ID: {db_pre_display} (length: {len(DB_PRESUPUESTO_ID)})", file=sys.stderr)
 if PAGO_TEMPLATE_ID:
     print(f"[DEBUG] PAGO_TEMPLATE_ID: {PAGO_TEMPLATE_ID[:8]}...{PAGO_TEMPLATE_ID[-4:]}", file=sys.stderr)
+if PAGO_DEUDAS_ID:
+    print(f"[DEBUG] PAGO_DEUDAS_ID: {PAGO_DEUDAS_ID[:8]}...{PAGO_DEUDAS_ID[-4:]}", file=sys.stderr)
 
 headers = {
     "Authorization": "Bearer " + NOTION_TOKEN,
@@ -196,6 +201,13 @@ def create_payment_page(cuentas_page_id, fecha):
             "relation": [{"id": cuentas_page_id}]
         }
         success = update_page_property(new_page_id, "Destino dinero", destino_payload) and success
+        
+        # Update sub-category (relation to Pago Deudas)
+        if PAGO_DEUDAS_ID:
+            sub_cat_payload = {
+                "relation": [{"id": PAGO_DEUDAS_ID}]
+            }
+            success = update_page_property(new_page_id, "Sub-Categorias", sub_cat_payload) and success
         
         if success:
             return new_page_id
