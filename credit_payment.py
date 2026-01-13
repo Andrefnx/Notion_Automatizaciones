@@ -35,8 +35,12 @@ print(f"[DEBUG] DB_CUENTAS_ID: {db_cuentas_display} (length: {len(DB_CUENTAS_ID)
 print(f"[DEBUG] DB_PRESUPUESTO_ID: {db_pre_display} (length: {len(DB_PRESUPUESTO_ID)})", file=sys.stderr)
 if CUOTAS_TEMPLATE_ID:
     print(f"[DEBUG] CUOTAS_TEMPLATE_ID: {CUOTAS_TEMPLATE_ID[:8]}...{CUOTAS_TEMPLATE_ID[-4:]}", file=sys.stderr)
+else:
+    print(f"[WARNING] CUOTAS_TEMPLATE_ID not set - will create pages WITHOUT template styling", file=sys.stderr)
 if PAGO_DEUDAS_ID:
     print(f"[DEBUG] PAGO_DEUDAS_ID: {PAGO_DEUDAS_ID[:8]}...{PAGO_DEUDAS_ID[-4:]}", file=sys.stderr)
+else:
+    print(f"[WARNING] PAGO_DEUDAS_ID not set - will NOT set sub-category", file=sys.stderr)
 
 headers = {
     "Authorization": "Bearer " + NOTION_TOKEN,
