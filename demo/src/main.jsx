@@ -4,6 +4,7 @@ import data from '../data.json';
 import './style.css';
 
 const months = ['ABRIL 2026', 'MAYO 2026'];
+const dateForMonth = (date,index)=>index===0?date:date.replace('-04-','-05-');
 
 function App(){
   const [running,setRunning]=useState(false);
@@ -35,7 +36,7 @@ function App(){
             <div className="row head"><span>Aa&nbsp; Nombre</span><span>▣&nbsp; Fecha</span><span>▣&nbsp; Monto</span><span>◉&nbsp; Tipo</span><span>◫&nbsp; Categoría</span><span>◫&nbsp; Estado</span></div>
             {(index===0?data.records:data.records.slice(0,2)).map((r,i)=><div className={'row '+(done&&i===0?'generated':'')} key={month+r.name}>
               <span className="title">★ {index===1&&i===0?'Sueldo':r.name}</span>
-              <span>{index===1?r.date.replace('2026','2026'):r.date}</span>
+              <span>{dateForMonth(r.date,index)}</span>
               <span>$ {String(r.amount).replace(/\B(?=(\d{3})+(?!\d))/g,'.').replace(/\d(?=\d{3})/g,'•')}</span>
               <span><i className={r.type==='Ingreso'?'income':'expense'}>{r.type}</i></span>
               <span><i className="category">{r.category}</i></span>
