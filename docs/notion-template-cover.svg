@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+  <rect width="1400" height="760" fill="#f7f7f5"/>
+  <rect x="0" y="0" width="245" height="760" fill="#f1f1ef"/>
+  <text x="28" y="52" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#37352f">◆ Gestión Financiera</text>
+  <text x="28" y="100" font-family="Arial, sans-serif" font-size="14" fill="#787774">⌂ Inicio</text>
+  <text x="28" y="136" font-family="Arial, sans-serif" font-size="14" fill="#787774">▣ Movimientos</text>
+  <rect x="16" y="158" width="213" height="36" rx="6" fill="#e3e2df"/>
+  <text x="28" y="181" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#37352f">▦ Presupuesto mensual</text>
+  <text x="28" y="222" font-family="Arial, sans-serif" font-size="14" fill="#787774">◫ Gastos programados</text>
+  <text x="28" y="258" font-family="Arial, sans-serif" font-size="14" fill="#787774">◎ Categorías</text>
+  <text x="28" y="294" font-family="Arial, sans-serif" font-size="14" fill="#787774">◈ Cuentas</text>
+
+  <rect x="245" y="0" width="1155" height="172" fill="#315443"/>
+  <circle cx="1195" cy="74" r="43" fill="#e8dfc8" opacity=".85"/>
+  <path d="M1195 70 C1175 45 1178 24 1200 20 C1218 42 1215 59 1195 70Z" fill="#809578"/>
+  <path d="M1198 71 C1222 50 1240 54 1248 74 C1224 86 1208 83 1198 71Z" fill="#6f876d"/>
+  <text x="300" y="73" font-family="Arial, sans-serif" font-size="19" fill="#e8efe9" letter-spacing="2">PLANTILLA DE NOTION</text>
+  <text x="300" y="115" font-family="Georgia, serif" font-size="38" font-weight="700" fill="#ffffff">Gestión Financiera Mensual</text>
+  <text x="300" y="145" font-family="Arial, sans-serif" font-size="15" fill="#d6e0d9">Automatiza · organiza · controla</text>
+
+  <text x="300" y="213" font-family="Arial, sans-serif" font-size="38" fill="#37352f">💸</text>
+  <text x="300" y="263" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#37352f">Presupuesto mensual</text>
+  <text x="300" y="292" font-family="Arial, sans-serif" font-size="15" fill="#787774">Cada mes se crea un período, se replica lo programado y se generan cuotas automáticamente.</text>
+
+  <rect x="300" y="325" width="96" height="34" rx="6" fill="#e3e2df"/>
+  <text x="322" y="347" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#37352f">▦ Todos</text>
+  <text x="423" y="347" font-family="Arial, sans-serif" font-size="13" fill="#787774">▣ Ingresos</text>
+  <text x="514" y="347" font-family="Arial, sans-serif" font-size="13" fill="#787774">▣ Gastos</text>
+  <text x="592" y="347" font-family="Arial, sans-serif" font-size="13" fill="#787774">◫ Cuotas</text>
+  <rect x="1182" y="322" width="150" height="38" rx="6" fill="#2383e2"/>
+  <text x="1203" y="346" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#fff">+ Nuevo movimiento</text>
+
+  <text x="300" y="398" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#37352f">▾ ABRIL 2026</text>
+  <line x1="300" y1="414" x2="1330" y2="414" stroke="#e1e1df"/>
+  <text x="312" y="442" font-family="Arial, sans-serif" font-size="12" fill="#9b9a97">Aa  Nombre</text>
+  <text x="590" y="442" font-family="Arial, sans-serif" font-size="12" fill="#9b9a97">▣  Fecha</text>
+  <text x="758" y="442" font-family="Arial, sans-serif" font-size="12" fill="#9b9a97">▣  Monto</text>
+  <text x="905" y="442" font-family="Arial, sans-serif" font-size="12" fill="#9b9a97">◉  Tipo</text>
+  <text x="1040" y="442" font-family="Arial, sans-serif" font-size="12" fill="#9b9a97">◫  Categoría</text>
+  <text x="1190" y="442" font-family="Arial, sans-serif" font-size="12" fill="#9b9a97">◫  Estado</text>
+
+  <rect x="300" y="455" width="1030" height="52" fill="#eef6f1"/>
+  <text x="312" y="487" font-family="Arial, sans-serif" font-size="14" fill="#37352f">★ Sueldo</text>
+  <text x="590" y="487" font-family="Arial, sans-serif" font-size="14" fill="#37352f">1 abr 2026</text>
+  <text x="758" y="487" font-family="Arial, sans-serif" font-size="14" fill="#37352f">$ 2•••.•••</text>
+  <rect x="902" y="470" width="72" height="24" rx="5" fill="#d3e5db"/><text x="918" y="487" font-family="Arial" font-size="12" fill="#2b684f">Ingreso</text>
+  <text x="1040" y="487" font-family="Arial" font-size="14" fill="#37352f">Ingresos</text>
+  <text x="1190" y="487" font-family="Arial" font-size="14" fill="#2b684f">Generado</text>
+
+  <rect x="300" y="508" width="1030" height="52" fill="#fff"/>
+  <text x="312" y="540" font-family="Arial, sans-serif" font-size="14" fill="#37352f">★ Arriendo</text>
+  <text x="590" y="540" font-family="Arial, sans-serif" font-size="14" fill="#37352f">2 abr 2026</text>
+  <text x="758" y="540" font-family="Arial, sans-serif" font-size="14" fill="#37352f">$ •••.•••</text>
+  <rect x="902" y="523" width="58" height="24" rx="5" fill="#f4d8d3"/><text x="916" y="540" font-family="Arial" font-size="12" fill="#8f4b42">Gasto</text>
+  <text x="1040" y="540" font-family="Arial" font-size="14" fill="#37352f">Hogar</text>
+  <text x="1190" y="540" font-family="Arial" font-size="14" fill="#37352f">Replicado</text>
+
+  <rect x="300" y="561" width="1030" height="52" fill="#fff"/>
+  <text x="312" y="593" font-family="Arial, sans-serif" font-size="14" fill="#37352f">★ Compra notebook · 2/6</text>
+  <text x="590" y="593" font-family="Arial, sans-serif" font-size="14" fill="#37352f">5 abr 2026</text>
+  <text x="758" y="593" font-family="Arial, sans-serif" font-size="14" fill="#37352f">$ •••.•••</text>
+  <rect x="902" y="576" width="58" height="24" rx="5" fill="#f4d8d3"/><text x="916" y="593" font-family="Arial" font-size="12" fill="#8f4b42">Gasto</text>
+  <text x="1040" y="593" font-family="Arial" font-size="14" fill="#37352f">Cuotas</text>
+  <text x="1190" y="593" font-family="Arial" font-size="14" fill="#6c5e98">2 / 6</text>
+
+  <text x="300" y="650" font-family="Arial" font-size="15" font-weight="700" fill="#37352f">▾ MAYO 2026</text>
+  <line x1="300" y1="666" x2="1330" y2="666" stroke="#e1e1df"/>
+  <text x="312" y="700" font-family="Arial" font-size="14" fill="#9b9a97">+ Nueva página</text>
+  <text x="1215" y="726" font-family="Arial" font-size="12" fill="#9b9a97">Demo pública · datos ficticios</text>
+</svg>
