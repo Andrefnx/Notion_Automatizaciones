@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-08-01 09:00",
+  "lastRun": "2026-04-01 09:00",
   "automations": [
     {"name": "Creación mensual", "status": "Completada", "summary": "Crea el período del mes y prepara movimientos programados."},
     {"name": "Sueldo programado", "status": "Completada", "summary": "Genera un ingreso mensual ficticio en la fecha configurada."},
@@ -7,10 +7,10 @@
     {"name": "Compras en cuotas", "status": "Completada", "summary": "Divide una compra ficticia y crea sus vencimientos mensuales."}
   ],
   "records": [
-    {"name": "Sueldo", "date": "2026-08-01", "amount": 950000, "type": "Ingreso", "category": "Ingresos", "status": "Creado"},
-    {"name": "Arriendo", "date": "2026-08-05", "amount": 310000, "type": "Gasto", "category": "Hogar", "status": "Creado"},
-    {"name": "Streaming", "date": "2026-08-11", "amount": 7990, "type": "Gasto", "category": "Suscripciones", "status": "Creado"},
-    {"name": "Compra notebook 2/6", "date": "2026-08-15", "amount": 85000, "type": "Gasto", "category": "Tecnología", "status": "Creado"}
+    {"name": "Sueldo", "date": "2026-04-01", "amount": 950000, "type": "Ingreso", "category": "Ingresos", "status": "Creado"},
+    {"name": "Arriendo", "date": "2026-04-05", "amount": 310000, "type": "Gasto", "category": "Hogar", "status": "Creado"},
+    {"name": "Streaming", "date": "2026-04-11", "amount": 7990, "type": "Gasto", "category": "Suscripciones", "status": "Creado"},
+    {"name": "Compra notebook 2/6", "date": "2026-04-15", "amount": 85000, "type": "Gasto", "category": "Tecnología", "status": "Creado"}
   ],
   "errors": [
     {"automation": "Ejemplo de error controlado", "message": "HTTP 429 simulado: reintento aplicado", "resolved": true}
