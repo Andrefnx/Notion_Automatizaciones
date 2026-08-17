@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="./docs/notion-template-cover.svg" width="100%" alt="Plantilla de Notion para gestión financiera mensual automatizada" />
-</p>
+
 
 <h1 align="center">Notion Automatizaciones</h1>
 <p align="center"><b>Plantilla visual de gestión financiera mensual + automatización real con Python y Notion API.</b></p>
