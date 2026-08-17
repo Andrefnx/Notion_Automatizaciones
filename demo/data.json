@@ -1,18 +1,36 @@
 {
-  "lastRun": "2026-04-01 09:00",
-  "automations": [
-    {"name": "Creación mensual", "status": "Completada", "summary": "Crea el período del mes y prepara movimientos programados."},
-    {"name": "Sueldo programado", "status": "Completada", "summary": "Genera un ingreso mensual ficticio en la fecha configurada."},
-    {"name": "Gastos recurrentes", "status": "Completada", "summary": "Replica suscripciones y gastos fijos para el nuevo mes."},
-    {"name": "Compras en cuotas", "status": "Completada", "summary": "Divide una compra ficticia y crea sus vencimientos mensuales."}
-  ],
+  "lastRun": "Sin ejecutar en esta sesión",
   "records": [
-    {"name": "Sueldo", "date": "2026-04-01", "amount": 950000, "type": "Ingreso", "category": "Ingresos", "status": "Creado"},
-    {"name": "Arriendo", "date": "2026-04-05", "amount": 310000, "type": "Gasto", "category": "Hogar", "status": "Creado"},
-    {"name": "Streaming", "date": "2026-04-11", "amount": 7990, "type": "Gasto", "category": "Suscripciones", "status": "Creado"},
-    {"name": "Compra notebook 2/6", "date": "2026-04-15", "amount": 85000, "type": "Gasto", "category": "Tecnología", "status": "Creado"}
+    {"id":"seed-salary-apr","name":"Sueldo","date":"2026-04-01","amount":950000,"type":"Ingreso","account":"Cuenta Corriente","subcategory":"Sueldo","category":"Finanzas","status":"Pagado"},
+    {"id":"seed-rent-apr","name":"Arriendo","date":"2026-04-05","amount":310000,"type":"Gasto","account":"Cuenta Corriente","subcategory":"Vivienda","category":"Hogar","status":"Pagado"},
+    {"id":"seed-stream-apr","name":"Streaming","date":"2026-04-11","amount":7990,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Entretenimiento","category":"Suscripciones","status":"Pagado"},
+    {"id":"seed-food-apr","name":"Supermercado","date":"2026-04-18","amount":85000,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Supermercado","category":"Alimentación","status":"Pagado"},
+    {"id":"seed-notebook-1","name":"Notebook 1/6","date":"2026-04-20","amount":100000,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Equipos","category":"Tecnología","status":"Pendiente","installment":true,"installmentIndex":1,"installmentCount":6},
+    {"id":"seed-notebook-2","name":"Notebook 2/6","date":"2026-05-20","amount":100000,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Equipos","category":"Tecnología","status":"Pendiente","installment":true,"installmentIndex":2,"installmentCount":6},
+    {"id":"seed-notebook-3","name":"Notebook 3/6","date":"2026-06-20","amount":100000,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Equipos","category":"Tecnología","status":"Pendiente","installment":true,"installmentIndex":3,"installmentCount":6},
+    {"id":"seed-notebook-4","name":"Notebook 4/6","date":"2026-07-20","amount":100000,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Equipos","category":"Tecnología","status":"Pendiente","installment":true,"installmentIndex":4,"installmentCount":6},
+    {"id":"seed-notebook-5","name":"Notebook 5/6","date":"2026-08-20","amount":100000,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Equipos","category":"Tecnología","status":"Pendiente","installment":true,"installmentIndex":5,"installmentCount":6},
+    {"id":"seed-notebook-6","name":"Notebook 6/6","date":"2026-09-20","amount":100000,"type":"Gasto","account":"Tarjeta Demo","subcategory":"Equipos","category":"Tecnología","status":"Pendiente","installment":true,"installmentIndex":6,"installmentCount":6}
   ],
-  "errors": [
-    {"automation": "Ejemplo de error controlado", "message": "HTTP 429 simulado: reintento aplicado", "resolved": true}
+  "scheduled": [
+    {"id":"scheduled-rent","name":"Arriendo","amount":310000,"day":5,"category":"Hogar","account":"Cuenta Corriente","active":true},
+    {"id":"scheduled-stream","name":"Streaming","amount":7990,"day":11,"category":"Suscripciones","account":"Tarjeta Demo","active":true},
+    {"id":"scheduled-insurance","name":"Seguro","amount":24990,"day":20,"category":"Finanzas","account":"Cuenta Corriente","active":true},
+    {"id":"scheduled-internet","name":"Internet","amount":19990,"day":15,"category":"Hogar","account":"Tarjeta Demo","active":true}
+  ],
+  "categories": [
+    {"name":"Finanzas","icon":"💰","description":"Ingresos, seguros y planificación financiera."},
+    {"name":"Alimentación","icon":"🥗","description":"Supermercado y comidas."},
+    {"name":"Salud","icon":"🩺","description":"Salud y bienestar."},
+    {"name":"Mascotas","icon":"🐾","description":"Gastos de mascotas."},
+    {"name":"Hogar","icon":"🏠","description":"Vivienda y servicios básicos."},
+    {"name":"Suscripciones","icon":"▶","description":"Servicios digitales recurrentes."},
+    {"name":"Tecnología","icon":"💻","description":"Equipos, software y accesorios."},
+    {"name":"Otros","icon":"◌","description":"Movimientos sin categoría específica."}
+  ],
+  "accounts": [
+    {"name":"Cuenta Corriente","kind":"Débito","openingBalance":120000},
+    {"name":"Tarjeta Demo","kind":"Crédito","openingBalance":0},
+    {"name":"Cuenta Ahorro","kind":"Ahorro","openingBalance":180000}
   ]
 }
