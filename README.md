@@ -1,54 +1,98 @@
-
-
 <h1 align="center">Notion Automatizaciones</h1>
-<p align="center"><b>Plantilla visual de gestión financiera mensual + automatización real con Python y Notion API.</b></p>
-<p align="center">
-  <a href="https://andrefnx.github.io/Notion_Automatizaciones/"><b>Ver demo</b></a> ·
-  <a href="./DOCUMENTATION.md">Documentación</a>
-</p>
+<p align="center"><b>Gestión financiera en Notion + automatizaciones Python + demo pública interactiva.</b></p>
+<p align="center"><a href="https://andrefnx.github.io/Notion_Automatizaciones/"><b>▶ Abrir demo interactiva</b></a> · <a href="./DOCUMENTATION.md">Documentación</a></p>
 
-> La versión pública se presenta como una **plantilla de Notion navegable**. Todos los movimientos, montos, nombres y fechas de la demostración son ficticios. No contiene tokens, IDs de bases/data sources ni información financiera personal.
+> La demo pública es una **simulación visual segura de una plantilla de Notion**. Funciona completamente en el navegador con datos ficticios y no tiene acceso al workspace, tokens, IDs, cuentas ni información financiera real.
 
-## Qué automatiza
+## Qué demuestra el proyecto
 
-El proyecto convierte tareas repetitivas de una plantilla financiera de Notion en procesos reproducibles. Al comenzar un período puede preparar la página del mes, registrar el sueldo, replicar gastos programados y generar las cuotas correspondientes a compras anteriores, conservando su organización por categorías.
+El repositorio automatiza tareas repetitivas de una plantilla financiera: preparación de períodos, pagos programados y generación de cuotas. La interfaz React permite enseñar ese comportamiento sin exponer una integración privada.
 
-La demostración visual reproduce el flujo de una plantilla real de Notion: barra lateral, portada, página mensual, vistas de base de datos, grupos por mes, propiedades y etiquetas. El botón **Ejecutar demostración** simula la automatización completamente en el navegador y sin credenciales.
+En la demo puedes navegar entre **Inicio, Movimientos, Presupuesto mensual, Gastos programados, Categorías y Cuentas**, abrir registros como páginas laterales, crear movimientos, filtrar vistas y ver los totales recalcularse inmediatamente.
 
-### Flujo representado
+Las compras en cuotas se distribuyen automáticamente entre meses. Por ejemplo, un gasto de `$600.000` en 6 cuotas genera `1/6`, `2/6` … `6/6` en seis períodos consecutivos y cada cuota afecta únicamente el presupuesto del mes correspondiente.
 
-- crea/prepara un nuevo período mensual;
-- registra ingresos programados como el sueldo;
-- replica gastos recurrentes del mes;
-- genera cuotas futuras de compras;
-- conserva categorías y relaciones;
-- muestra estado, ejecución y errores simulados;
-- evita exponer cualquier dato real del proyecto original.
+## Dos capas separadas
+
+### Automatización real
+
+```text
+Python + requests
+        ↓
+    Notion API
+        ↓
+Bases de datos / períodos / movimientos
+```
+
+Los scripts Python leen configuración privada desde variables de entorno y realizan operaciones contra la API de Notion. `credit_payment.py` prepara pagos asociados a cuentas y `cuotas_generator.py` genera registros mensuales de cuotas. La capa reutilizable en `notion_automation/` incorpora cliente HTTP, paginación, reintentos y manejo de errores.
+
+### Demo pública
+
+```text
+   React Demo
+        ↓
+  Datos ficticios
+        ↓
+Simulación pública
+```
+
+La demo **no llama a Notion**. Usa estado React y `localStorage` para conservar durante la sesión los movimientos y cambios realizados en el navegador. La opción **Restablecer demo** vuelve a cargar el dataset ficticio original.
+
+## Funcionalidades de la demo
+
+- navegación real mediante sidebar estilo Notion;
+- dashboard con ingresos, gastos, disponible y cuotas pendientes;
+- base de datos de movimientos con vistas Todos / Ingresos / Gastos / Cuotas;
+- filas clickeables que se abren como páginas laterales;
+- creación y edición de movimientos;
+- tipos Ingreso, Gasto y Ahorro;
+- compra en cuotas con monto total, cantidad y fecha de primera cuota;
+- navegación mensual con flechas y cálculo dinámico por período;
+- gastos programados editables y creación de nuevas reglas ficticias;
+- categorías navegables;
+- cuentas ficticias con saldos derivados de movimientos;
+- simulación visual de automatización mensual;
+- persistencia local con `localStorage`;
+- diseño responsive con menú móvil.
+
+## Automatización mensual simulada
+
+El botón **Ejecutar demostración** muestra el flujo:
+
+```text
+Creando período...
+Registrando ingreso programado...
+Replicando gastos...
+Generando cuotas...
+Actualizando estados...
+Completado.
+```
+
+Al terminar, la interfaz prepara el siguiente período, crea un sueldo ficticio y replica los gastos programados activos. Las cuotas ya creadas continúan apareciendo en el mes que les corresponde.
 
 ## Arquitectura
 
 ```text
-main.py                     Entrada segura: demo por defecto
+main.py                     Entrada segura de la capa Python
 notion_automation/
-  config.py                 Validación de variables de entorno
-  client.py                 Cliente HTTP, paginación, reintentos y errores
-  demo.py                   Ejecución local sin credenciales
+  config.py                 Variables de entorno y validación
+  client.py                 Cliente HTTP para Notion API
+  demo.py                   Ejecución local segura
+credit_payment.py           Automatización histórica de pagos
+cuotas_generator.py         Automatización histórica de cuotas
+
 demo/
   data.json                 Dataset 100% ficticio
-  src/                      Plantilla visual React estilo Notion
-docs/
-  notion-template-cover.svg Portada pública del proyecto
-tests/                      Pruebas con respuestas simuladas
-.github/workflows/          Validación, Pages y scripts manuales
-credit_payment.py           Automatización existente de pagos programados
-cuotas_generator.py         Automatización existente de cuotas
+  src/main.jsx              Workspace React interactivo
+  src/style.css             Apariencia estilo Notion
+  vite.config.js            Base path de GitHub Pages
+
+.github/workflows/pages.yml Build y despliegue de la demo
 ```
 
-El cliente reutilizable usa `Notion-Version: 2025-09-03` y consulta registros mediante `POST /v1/data_sources/{data_source_id}/query`. Incluye paginación con `has_more`/`next_cursor`, timeout, manejo de JSON inválido, errores HTTP y reintentos ante `429` y errores transitorios `5xx`.
+## Ejecutar localmente
 
-## Instalación local
-
-Requiere Python 3.11+.
+### Python
 
 ```bash
 python -m venv venv
@@ -56,14 +100,11 @@ python -m venv venv
 .\venv\Scripts\Activate.ps1
 # macOS/Linux
 source venv/bin/activate
-
 pip install -r requirements.txt
 python main.py --demo
 ```
 
-El modo demo funciona sin token y sin conexión a Notion.
-
-## Demo navegable
+### React
 
 ```bash
 cd demo
@@ -71,59 +112,26 @@ npm install
 npm run dev
 ```
 
-Para comprobar el build:
+Build de producción:
 
 ```bash
 npm run build
 ```
 
-La interfaz está diseñada intencionalmente para sentirse como una **plantilla de Notion** y no como un dashboard SaaS independiente. Los montos se muestran ficticios o visualmente censurados.
+## GitHub Pages
 
-## Variables de entorno
+La demo se publica en:
 
-Copia `.env.example` a `.env` solamente si vas a conectar tu propia integración privada.
+**https://andrefnx.github.io/Notion_Automatizaciones/**
 
-```text
-NOTION_TOKEN=
-NOTION_MOVIMIENTOS_DATA_SOURCE_ID=
-NOTION_CUENTAS_DATA_SOURCE_ID=
-NOTION_PRESUPUESTO_DATA_SOURCE_ID=
-DRY_RUN=true
-```
+`demo/vite.config.js` usa el base path `/Notion_Automatizaciones/`. El workflow de Pages se ejecuta automáticamente con cambios de la demo en `main` y también puede iniciarse manualmente con `workflow_dispatch`. El build y el deploy están separados y se sube un único artifact de Pages.
 
-`.env` está ignorado por Git. Mantén `DRY_RUN=true` mientras validas la configuración.
+## Seguridad
 
-## Conexión real con Notion
-
-La capa nueva está preparada para la API `2025-09-03`. Comparte tu integración únicamente con los data sources necesarios, configura las variables privadas y valida sin escribir:
-
-```bash
-python main.py --real
-```
-
-Con `DRY_RUN=true`, el comando valida configuración sin ejecutar escrituras. Los módulos históricos permanecen separados para no romper su comportamiento existente y deben revisarse antes de usarlos contra una base real.
-
-## Pruebas
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-Las pruebas no llaman a Notion: simulan paginación, rate limiting y respuestas JSON inválidas.
-
-## GitHub Actions y Pages
-
-`Manual validation` se ejecuta exclusivamente mediante `workflow_dispatch` y comprueba tests, demo Python y build React. Los workflows históricos también quedaron manuales para evitar modificaciones automáticas sobre una base real.
-
-Para configurar secretos: **Settings → Secrets and variables → Actions → New repository secret**. Nunca copies tokens o IDs en código, README, issues o logs.
-
-`Deploy demo to Pages` compila `demo/` y publica `demo/dist`. En **Settings → Pages**, selecciona **GitHub Actions** como fuente y ejecuta manualmente el workflow de despliegue.
-
-## Seguridad de la versión pública
-
-- Demo con datos ficticios y montos censurados.
-- Sin credenciales ni IDs reales.
-- Sin exports privados de Notion versionados.
-- Demo por defecto; conexión real opt-in.
-- Ningún workflow de escritura se ejecuta por cron.
-- Existe una branch de respaldo previa a la conversión pública.
+- datos públicos exclusivamente ficticios;
+- sin conexión de la demo React a Notion;
+- sin tokens ni IDs privados en la interfaz;
+- `.env` ignorado por Git;
+- conexión real opt-in mediante variables de entorno;
+- workflows históricos de escritura separados de la demo pública;
+- branch de respaldo previa a esta reconstrucción: `backup/pre-interactive-demo-2026-08-17`.
